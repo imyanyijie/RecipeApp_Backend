@@ -3,6 +3,10 @@ package com.imyanyijie.recipes.model;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.*;
 
 @ToString
@@ -37,8 +41,11 @@ public class Recipe {
   @Column(name = "prepDuration")
   private Long prepDuration;
 
-  @Column(name = "createTime")
+  @CreationTimestamp
   private Timestamp createTime;
+
+  @UpdateTimestamp
+  private Timestamp updateTimestamp;
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   List<Ingrediant> ingrediant;

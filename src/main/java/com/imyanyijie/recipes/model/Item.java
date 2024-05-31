@@ -9,8 +9,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.sql.Timestamp;
 import java.util.List;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @ToString
 @Getter
@@ -34,6 +37,12 @@ public class Item {
 
   @Column(name = "unitCost", nullable = false)
   private double unitCost;
+
+  @CreationTimestamp
+  private Timestamp createTime;
+
+  @UpdateTimestamp
+  private Timestamp updateTime;
 
   @OneToMany(
     mappedBy = "item",
