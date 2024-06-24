@@ -1,5 +1,6 @@
 package com.imyanyijie.recipes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class Ingrediant {
   @ManyToOne
   @MapsId("recipeID")
   @JoinColumn(name = "recipeID")
+  @JsonIgnore
   private Recipe recipe;
 
   @Column(name = "itemAmount", nullable = false)

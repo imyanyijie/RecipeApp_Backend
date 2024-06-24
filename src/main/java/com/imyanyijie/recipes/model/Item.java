@@ -1,5 +1,6 @@
 package com.imyanyijie.recipes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,9 +47,11 @@ public class Item {
 
   @OneToMany(
     mappedBy = "item",
-    cascade = CascadeType.ALL,
-    fetch = FetchType.LAZY
+    cascade = CascadeType.ALL
+    // fetch = FetchType.LAZY,
+    // orphanRemoval = true
   )
+  @JsonIgnore
   List<Ingrediant> ingrediant;
 
   public Item(String name, String description, double unitCost) {

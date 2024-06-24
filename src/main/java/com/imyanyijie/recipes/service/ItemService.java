@@ -1,18 +1,20 @@
-package com.imyanyijie.service;
+package com.imyanyijie.recipes.service;
 
+import com.imyanyijie.recipes.exception.BadRequestException;
+import com.imyanyijie.recipes.exception.ItemNotFoundException;
 import com.imyanyijie.recipes.model.Item;
 import com.imyanyijie.recipes.repository.ItemRepository;
-import exception.BadRequestException;
-import exception.ItemNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
 public class ItemService {
 
+  @Autowired
   ItemRepository itemRepository;
 
   /**

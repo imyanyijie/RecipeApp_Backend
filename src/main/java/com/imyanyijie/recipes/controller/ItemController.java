@@ -1,7 +1,8 @@
 package com.imyanyijie.recipes.controller;
 
 import com.imyanyijie.recipes.model.Item;
-import com.imyanyijie.service.ItemService;
+import com.imyanyijie.recipes.service.ItemService;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;

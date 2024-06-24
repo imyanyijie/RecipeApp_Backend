@@ -3,11 +3,9 @@ package com.imyanyijie.recipes.model;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
-
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import lombok.*;
 
 @ToString
 @Getter
@@ -47,7 +45,12 @@ public class Recipe {
   @UpdateTimestamp
   private Timestamp updateTimestamp;
 
-  @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany(
+    mappedBy = "recipe",
+    cascade = CascadeType.ALL
+    // fetch = FetchType.LAZY,
+    // orphanRemoval = true
+  )
   List<Ingrediant> ingrediant;
 
   public Recipe(
@@ -56,8 +59,7 @@ public class Recipe {
     String description,
     String name,
     Long cookDuration,
-    Long prepDuration,
-    Timestamp createTime
+    Long prepDuration
   ) {
     this.imagePath = imagePath;
     this.instruction = instruction;
@@ -65,6 +67,5 @@ public class Recipe {
     this.name = name;
     this.cookDuration = cookDuration;
     this.prepDuration = prepDuration;
-    this.createTime = createTime;
   }
 }

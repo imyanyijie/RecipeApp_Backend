@@ -1,7 +1,8 @@
 package com.imyanyijie.recipes.controller;
 
 import com.imyanyijie.recipes.model.Recipe;
-import com.imyanyijie.service.RecipeService;
+import com.imyanyijie.recipes.service.RecipeService;
+import dto.CreateRecipeDTO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -33,7 +34,7 @@ public class RecipeController {
   }
 
   @PostMapping
-  public Recipe createRecipe(@RequestBody Recipe recipe) {
-    return recipeService.creatRecipe(recipe);
+  public Recipe createRecipe(@RequestBody CreateRecipeDTO recipeRequest) {
+    return recipeService.creatRecipe(recipeRequest);
   }
 }
