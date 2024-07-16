@@ -5,7 +5,7 @@ import com.imyanyijie.recipes.model.Unit;
 import java.util.List;
 
 public record CreateRecipeDTO(
-  String imgPath,
+  String imagePath,
   String instruction,
   String description,
   String name,

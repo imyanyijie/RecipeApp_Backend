@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.imyanyijie.recipes.model.Ingrediant;
 import com.imyanyijie.recipes.model.Item;
 import com.imyanyijie.recipes.model.Recipe;
-import com.imyanyijie.recipes.model.RecipeItemKey;
 import com.imyanyijie.recipes.model.Unit;
 import com.imyanyijie.recipes.repository.IngrediantRepository;
 import com.imyanyijie.recipes.repository.ItemRepository;

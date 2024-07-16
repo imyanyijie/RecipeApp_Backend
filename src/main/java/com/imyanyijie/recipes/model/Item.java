@@ -47,8 +47,8 @@ public class Item {
 
   @OneToMany(
     mappedBy = "item",
-    cascade = CascadeType.ALL
-    // fetch = FetchType.LAZY,
+    cascade = CascadeType.ALL,
+    fetch = FetchType.EAGER
     // orphanRemoval = true
   )
   @JsonIgnore

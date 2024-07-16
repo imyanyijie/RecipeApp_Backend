@@ -45,7 +45,7 @@ public class RecipeService {
     System.out.println("Recipe name is " + recipeRequest.name());
     //save recipe
     Recipe recipe = new Recipe(
-      recipeRequest.imgPath(),
+      recipeRequest.imagePath(),
       recipeRequest.instruction(),
       recipeRequest.description(),
       recipeRequest.name(),
