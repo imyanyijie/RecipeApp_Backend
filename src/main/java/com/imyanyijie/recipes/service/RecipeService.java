@@ -7,6 +7,7 @@ import com.imyanyijie.recipes.model.RecipeItemKey;
 import com.imyanyijie.recipes.repository.IngrediantRepository;
 import com.imyanyijie.recipes.repository.RecipeRepository;
 import dto.CreateRecipeDTO;
+import dto.ShortRecipeDTO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +28,10 @@ public class RecipeService {
   public List<Recipe> getAllRecipes() {
     List<Recipe> recipes = recipeRepository.findAll();
     return recipes;
+  }
+
+  public List<ShortRecipeDTO> getShortRecipes() {
+    return recipeRepository.findShortRecipes();
   }
 
   public Recipe getRecipeByID(long id) {
