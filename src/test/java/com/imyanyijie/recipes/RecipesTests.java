@@ -2,6 +2,7 @@ package com.imyanyijie.recipes;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.imyanyijie.recipes.dto.CreateRecipeDTO;
 import com.imyanyijie.recipes.model.Ingrediant;
 import com.imyanyijie.recipes.model.Item;
 import com.imyanyijie.recipes.model.Recipe;
@@ -10,7 +11,6 @@ import com.imyanyijie.recipes.repository.IngrediantRepository;
 import com.imyanyijie.recipes.repository.ItemRepository;
 import com.imyanyijie.recipes.repository.RecipeRepository;
 import com.imyanyijie.recipes.service.RecipeService;
-import dto.CreateRecipeDTO;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -76,38 +76,5 @@ class RecipesTests {
     );
     Recipe savedRecipe = recipeService.creatRecipe(createRecipeDTO);
     assertThat(savedRecipe).isNotNull();
-    // Item item = new Item("testItem", "testDescp", 3.5);
-    // itemRepository.save(item);
-
-    // //create recipe object
-    // Recipe recipe = new Recipe(
-    //   "testimg",
-    //   "test instuction",
-    //   "test desc",
-    //   "test recipe",
-    //   40L,
-    //   40L,
-    // );
-
-    // recipeRepository.save(recipe);
-
-    // RecipeItemKey recipeItemKey = new RecipeItemKey(
-    //   recipe.getRecipeID(),
-    //   item.getItemID()
-    // );
-    // Ingrediant ingrediant = new Ingrediant();
-
-    // ingrediant.setIngrediantID(recipeItemKey);
-    // ingrediant.setItem(item);
-    // ingrediant.setRecipe(recipe);
-    // ingrediant.setItemAmount(8);
-    // ingrediant.setUnit(Unit.lb);
-
-    // Ingrediant savedIngrediant = ingrediantRepository.save(ingrediant);
-    // assertThat(savedIngrediant).isNotNull();
-    // assertThat(savedIngrediant.getIngrediantID().getItemID())
-    //   .isEqualTo(item.getItemID());
-    // assertThat(savedIngrediant.getIngrediantID().getRecipeID())
-    //   .isEqualTo(recipe.getRecipeID());
   }
 }

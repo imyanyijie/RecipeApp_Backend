@@ -1,4 +1,4 @@
-package dto;
+package com.imyanyijie.recipes.dto;
 
 import com.imyanyijie.recipes.model.Item;
 import com.imyanyijie.recipes.model.Unit;
