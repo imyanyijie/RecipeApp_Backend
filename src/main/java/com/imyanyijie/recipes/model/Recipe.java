@@ -47,11 +47,13 @@ public class Recipe {
 
   @OneToMany(
     mappedBy = "recipe",
-    cascade = CascadeType.ALL
-    // fetch = FetchType.LAZY,
-    // orphanRemoval = true
+    cascade = CascadeType.ALL,
+    orphanRemoval = true
   )
-  List<Ingrediant> ingrediant;
+  List<Ingredient> ingredients;
+
+  @ManyToMany(mappedBy = "addedRecipes")
+  List<MealPlan> plans;
 
   public Recipe(
     String imagePath,

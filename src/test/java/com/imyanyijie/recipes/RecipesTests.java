@@ -3,13 +3,13 @@ package com.imyanyijie.recipes;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.imyanyijie.recipes.dto.CreateRecipeDTO;
-import com.imyanyijie.recipes.model.Ingrediant;
 import com.imyanyijie.recipes.model.Item;
 import com.imyanyijie.recipes.model.Recipe;
 import com.imyanyijie.recipes.model.Unit;
-import com.imyanyijie.recipes.repository.IngrediantRepository;
+import com.imyanyijie.recipes.model.Ingredient;
 import com.imyanyijie.recipes.repository.ItemRepository;
 import com.imyanyijie.recipes.repository.RecipeRepository;
+import com.imyanyijie.recipes.repository.ingredientRepository;
 import com.imyanyijie.recipes.service.RecipeService;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import org.springframework.test.annotation.Rollback;
 class RecipesTests {
 
   @Autowired
-  private IngrediantRepository ingrediantRepository;
+  private ingredientRepository ingredientRepository;
 
   @Autowired
   private ItemRepository itemRepository;
@@ -39,9 +39,9 @@ class RecipesTests {
 
   @Test
   public void testListAllIngradiants() {
-    List<Ingrediant> ingrediants = ingrediantRepository.findAll();
-    assertThat(ingrediants.size()).isEqualTo(2);
-    System.out.println("There are: " + ingrediants.size());
+    List<Ingredient> ingredients = ingredientRepository.findAll();
+    assertThat(ingredients.size()).isEqualTo(2);
+    System.out.println("There are: " + ingredients.size());
   }
 
   @Test
@@ -57,13 +57,13 @@ class RecipesTests {
     Item item = new Item("Apple", "It is a apple for testing", 3.5);
     itemRepository.save(item);
     // System.out.println("Item ID is " + savedItem.getItemID());
-    CreateRecipeDTO.Ingrediant ingrediant = new CreateRecipeDTO.Ingrediant(
+    CreateRecipeDTO.ingredient ingredient = new CreateRecipeDTO.ingredient(
       item,
       2,
       Unit.g
     );
-    List<CreateRecipeDTO.Ingrediant> ingrediants = new ArrayList<>();
-    ingrediants.add(ingrediant);
+    List<CreateRecipeDTO.ingredient> ingredients = new ArrayList<>();
+    ingredients.add(ingredient);
     //create recipe object
     CreateRecipeDTO createRecipeDTO = new CreateRecipeDTO(
       "testPath",
@@ -72,7 +72,7 @@ class RecipesTests {
       "Apple Pie",
       30,
       30,
-      ingrediants
+      ingredients
     );
     Recipe savedRecipe = recipeService.creatRecipe(createRecipeDTO);
     assertThat(savedRecipe).isNotNull();

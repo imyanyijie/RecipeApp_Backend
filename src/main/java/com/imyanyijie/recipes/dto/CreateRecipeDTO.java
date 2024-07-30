@@ -10,8 +10,8 @@ public record CreateRecipeDTO(
   String description,
   String name,
   long cookDuration,
-  long prepduration,
-  List<Ingrediant> ingrediants
+  long prepDuration,
+  List<ingredient> ingredients
 ) {
-  public record Ingrediant(Item item, double itemAmount, Unit unit) {}
+  public record ingredient(Item item, double itemAmount, Unit unit) {}
 }

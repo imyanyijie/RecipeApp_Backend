@@ -14,7 +14,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Getter
 @Setter
-@ToString
+@ToString 
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecipeItemKey implements Serializable {

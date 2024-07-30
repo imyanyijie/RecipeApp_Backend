@@ -3,12 +3,13 @@ package com.imyanyijie.recipes.service;
 import com.imyanyijie.recipes.dto.CreateRecipeDTO;
 import com.imyanyijie.recipes.dto.ShortRecipeDTO;
 import com.imyanyijie.recipes.exception.ItemNotFoundException;
-import com.imyanyijie.recipes.model.Ingrediant;
+import com.imyanyijie.recipes.model.Ingredient;
 import com.imyanyijie.recipes.model.Recipe;
 import com.imyanyijie.recipes.model.RecipeItemKey;
-import com.imyanyijie.recipes.repository.IngrediantRepository;
 import com.imyanyijie.recipes.repository.RecipeRepository;
-
+import com.imyanyijie.recipes.repository.ingredientRepository;
+import jakarta.persistence.TableGenerator;
+import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public class RecipeService {
   RecipeRepository recipeRepository;
 
   @Autowired
-  IngrediantRepository ingrediantRepository;
+  ingredientRepository ingredientRepository;
 
   public List<Recipe> getAllRecipes() {
     List<Recipe> recipes = recipeRepository.findAll();
@@ -46,7 +47,7 @@ public class RecipeService {
   }
 
   //will take a request recipe type and convert to the entity type.
-  //this method will also create the key relationship with ingrediant
+  //this method will also create the key relationship with ingredient
   public Recipe creatRecipe(CreateRecipeDTO recipeRequest) {
     System.out.println("Recipe name is " + recipeRequest.name());
     //save recipe
@@ -56,25 +57,25 @@ public class RecipeService {
       recipeRequest.description(),
       recipeRequest.name(),
       recipeRequest.cookDuration(),
-      recipeRequest.prepduration()
+      recipeRequest.prepDuration()
     );
     recipeRepository.save(recipe);
 
-    List<CreateRecipeDTO.Ingrediant> ingrediants = recipeRequest.ingrediants();
-    List<Ingrediant> saveIngrediants = new ArrayList<>();
-    for (CreateRecipeDTO.Ingrediant ing : ingrediants) {
-      Ingrediant ingrediant = new Ingrediant();
-      ingrediant.setIngrediantID(
+    List<CreateRecipeDTO.ingredient> ingredients = recipeRequest.ingredients();
+    List<Ingredient> saveingredients = new ArrayList<>();
+    for (CreateRecipeDTO.ingredient ing : ingredients) {
+      Ingredient ingredient = new Ingredient();
+      ingredient.setIngredientID(
         new RecipeItemKey(recipe.getRecipeID(), ing.item().getItemID())
       );
-      ingrediant.setItem(ing.item());
-      ingrediant.setRecipe(recipe);
-      ingrediant.setItemAmount(ing.itemAmount());
-      ingrediant.setUnit(ing.unit());
-      saveIngrediants.add(ingrediant);
+      ingredient.setItem(ing.item());
+      ingredient.setRecipe(recipe);
+      ingredient.setItemAmount(ing.itemAmount());
+      ingredient.setUnit(ing.unit());
+      saveingredients.add(ingredient);
     }
-    ingrediantRepository.saveAll(saveIngrediants);
-    recipe.setIngrediant(saveIngrediants);
+    ingredientRepository.saveAll(saveingredients);
+    recipe.setIngredients(saveingredients);
     return recipe;
   }
 
@@ -85,6 +86,8 @@ public class RecipeService {
         "The recipe with id " + id + " is not found"
       );
     }
-    recipeRepository.deleteById(id);
+    // Recipe deleteRecipe = recipeOption.get();
+    // deleteRecipe.getIngredients().removeAll(deleteRecipe.getIngredients());
+    recipeRepository.delete(recipeOption.get());
   }
 }

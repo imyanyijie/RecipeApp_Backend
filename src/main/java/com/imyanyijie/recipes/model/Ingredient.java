@@ -11,11 +11,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "ingrediant")
-public class Ingrediant {
+@Table(name = "ingredient")
+public class Ingredient {
 
   @EmbeddedId
-  private RecipeItemKey ingrediantID;
+  private RecipeItemKey ingredientID;
 
   @ManyToOne
   @MapsId("itemID")
@@ -35,8 +35,15 @@ public class Ingrediant {
   @Enumerated(EnumType.STRING)
   private Unit unit;
 
-  public Ingrediant(double itemAmount, Unit unit) {
+  public Ingredient(double itemAmount, Unit unit) {
     this.itemAmount = itemAmount;
     this.unit = unit;
+  }
+
+  @PreRemove
+  //make sure to remove assoicication with item before removal
+  public void preRemoval() {
+    this.item.getIngredients().clear();
+    this.item = null;
   }
 }
