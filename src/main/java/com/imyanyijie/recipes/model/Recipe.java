@@ -1,5 +1,6 @@
 package com.imyanyijie.recipes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
@@ -53,6 +54,7 @@ public class Recipe {
   List<Ingredient> ingredients;
 
   @ManyToMany(mappedBy = "addedRecipes")
+  @JsonIgnore
   List<MealPlan> plans;
 
   public Recipe(

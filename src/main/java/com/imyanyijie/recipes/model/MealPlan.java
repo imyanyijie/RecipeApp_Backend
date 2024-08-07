@@ -11,19 +11,27 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Table(name = "meal_plan")
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MealPlan {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long mealPlanID;
 
-  @Column(name = "name")
+  @Column(name = "name", nullable = false)
   private String name;
 
   @CreationTimestamp
@@ -41,5 +49,6 @@ public class MealPlan {
   List<Recipe> addedRecipes;
 
   @OneToMany(mappedBy = "plan")
+  @Column(name = "grocery_items", nullable = true)
   List<GroceryItems> groceryItems;
 }

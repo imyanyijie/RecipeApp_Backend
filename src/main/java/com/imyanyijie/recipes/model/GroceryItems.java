@@ -1,5 +1,6 @@
 package com.imyanyijie.recipes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,12 +13,20 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import java.security.Timestamp;
+import java.sql.Timestamp;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "grocery_items")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class GroceryItems {
 
   @Id
@@ -42,5 +51,6 @@ public class GroceryItems {
 
   @ManyToOne
   @JoinColumn(name = "planID", nullable = false)
+  @JsonIgnore
   private MealPlan plan;
 }

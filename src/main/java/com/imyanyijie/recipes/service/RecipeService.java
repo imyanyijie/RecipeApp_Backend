@@ -8,8 +8,6 @@ import com.imyanyijie.recipes.model.Recipe;
 import com.imyanyijie.recipes.model.RecipeItemKey;
 import com.imyanyijie.recipes.repository.RecipeRepository;
 import com.imyanyijie.recipes.repository.ingredientRepository;
-import jakarta.persistence.TableGenerator;
-import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +47,6 @@ public class RecipeService {
   //will take a request recipe type and convert to the entity type.
   //this method will also create the key relationship with ingredient
   public Recipe creatRecipe(CreateRecipeDTO recipeRequest) {
-    System.out.println("Recipe name is " + recipeRequest.name());
     //save recipe
     Recipe recipe = new Recipe(
       recipeRequest.imagePath(),
@@ -86,8 +83,6 @@ public class RecipeService {
         "The recipe with id " + id + " is not found"
       );
     }
-    // Recipe deleteRecipe = recipeOption.get();
-    // deleteRecipe.getIngredients().removeAll(deleteRecipe.getIngredients());
     recipeRepository.delete(recipeOption.get());
   }
 }
