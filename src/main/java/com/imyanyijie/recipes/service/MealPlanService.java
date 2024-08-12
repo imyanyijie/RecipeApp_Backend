@@ -27,7 +27,19 @@ public class MealPlanService {
   ItemRepository itemRepository;
 
   public MealPlan createMealPlan(MealPlan mealPlan) {
-    return mealPlanRepository.save(mealPlan);
+    mealPlanRepository.save(mealPlan);
+    List<GroceryItems> groceryList = new ArrayList<>();
+    for (GroceryItems items : mealPlan.getGroceryItems()) {
+      GroceryItems saveGroceryItems = new GroceryItems();
+      Optional<Item> foundItem = itemRepository.findById(items.getItemID());
+      if (foundItem.isPresent()) {
+        saveGroceryItems.setItem(foundItem.get());
+      }
+      saveGroceryItems.setPlan(mealPlan);
+      groceryList.add(saveGroceryItems);
+    }
+    groceryItemsRepository.saveAll(groceryList);
+    return mealPlan;
   }
 
   public List<MealPlan> getAllMealPlans() {

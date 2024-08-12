@@ -1,5 +1,6 @@
 package com.imyanyijie.recipes.controller;
 
+import com.imyanyijie.recipes.model.GroceryItems;
 import com.imyanyijie.recipes.model.MealPlan;
 import com.imyanyijie.recipes.service.MealPlanService;
 import java.util.List;
@@ -27,6 +28,11 @@ public class MealPlanController {
   @GetMapping
   public List<MealPlan> getAllMealPlans() {
     return mealPlanService.getAllMealPlans();
+  }
+
+  @GetMapping("/mealplanID={id}")
+  public List<GroceryItems> getAllPlanItems(@PathVariable long id) {
+    return mealPlanService.getAllGroceryItems(id);
   }
 
   @PostMapping
